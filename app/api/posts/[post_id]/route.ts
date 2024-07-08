@@ -4,7 +4,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET(
-//   request: Request,
+    request: Request,
   { params }: { params: { post_id: string } }
 ) {
   await connectDB();
@@ -34,7 +34,7 @@ export async function DELETE(
   auth().protect(); // protect the route with Clerk authentication
   await connectDB();
 
-//   const user = await currentUser();
+  //   const user = await currentUser();
   const { userId }: DeletePostRequesBody = await request.json();
 
   try {

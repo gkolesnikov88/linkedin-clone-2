@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 // GET function is used to get all comments of a post
 export async function GET(
-//   request: Request,
+  request: Request,
   { params }: { params: { post_id: string } }
 ) {
   try {
