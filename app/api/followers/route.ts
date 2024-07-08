@@ -79,7 +79,7 @@ export async function DELETE(request: Request) {
 
     const follow = await Followers.findOne({
       follower: followerUserId,
-      following: followingUserId,
+      following: followingUserId
     });
 
     if (!follow) {
