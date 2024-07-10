@@ -85,7 +85,7 @@ PostSchema.methods.getAllComments = async function () {
     await this.populate({
       path: "comments",
       options: { sort: { createdAt: -1 } }
-    }).execPopulate();
+    });
     return this.comments;
   } catch (error) {
     console.log("error when getting all comments", error);

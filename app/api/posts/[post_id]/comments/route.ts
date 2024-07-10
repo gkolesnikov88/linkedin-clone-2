@@ -17,7 +17,7 @@ export async function GET(
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
-    const comments = post.getAllComments();
+    const comments = await post.getAllComments();
     return NextResponse.json(comments);
   } catch (error) {
     return NextResponse.json(
