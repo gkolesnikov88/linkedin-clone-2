@@ -8,6 +8,8 @@ import { Badge } from "./ui/badge";
 import ReactTimeago from "react-timeago";
 import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
+import deletePostAction from "@/actions/deletePostAction";
+import Image from "next/image";
 
 function Post({ post }: { post: IPostDocument }) {
   const { user } = useUser();
@@ -46,10 +48,11 @@ function Post({ post }: { post: IPostDocument }) {
           </div>
 
           {isAuthor && (
-            <Button variant="outline"
+            <Button
+              variant="outline"
               onClick={() => {
                 // Delete the post
-                // const promise = deletePostAction(post._id);
+                const promise = deletePostAction(post._id as string);
                 //Toast
               }}
             >
@@ -58,6 +61,22 @@ function Post({ post }: { post: IPostDocument }) {
           )}
         </div>
       </div>
+
+      <div>
+        <p className="px-4 pb-2 mt-2">{post.text}</p>
+
+        {post.imageUrl && (
+          <Image
+            src={post.imageUrl}
+            alt="Post Image"
+            className="w-full mx-auto object-cover h-[500px]"
+            width={500}
+            height={500}
+          />
+        )}
+      </div>
+
+      {/* PostOptions */}
     </div>
   );
 }

@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "my_azure_site.org"
+        hostname: "linkdinclonegkol.blob.core.windows.net"
       }
     ]
   }
