@@ -1,6 +1,7 @@
 import { IUser } from "@/types/user";
 import mongoose, { Schema, Document, models, Model, ObjectId } from "mongoose";
 import { Comment, IComment, ICommentBase } from "./comment";
+import { Key } from "react";
 
 export interface IPostBase {
   user: IUser;
@@ -10,7 +11,7 @@ export interface IPostBase {
   likes?: string[];
 }
 
-export interface IPost extends IPostBase, Document<ObjectId> {
+export interface IPost extends IPostBase, Document<Key> {
   createdAt: Date;
   updatedAt: Date;
 }
