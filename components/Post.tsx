@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
 import deletePostAction from "@/actions/deletePostAction";
 import Image from "next/image";
+import PostOptions from "./PostOptions";
 
 function Post({ post }: { post: IPostDocument }) {
   const { user } = useUser();
@@ -76,7 +77,7 @@ function Post({ post }: { post: IPostDocument }) {
         )}
       </div>
 
-      {/* PostOptions */}
+      <PostOptions post={post} />
     </div>
   );
 }
