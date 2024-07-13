@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { LikePostRequestBody } from "@/app/api/posts/[post_id]/like/route";
 import { UnlikePostRequestBody } from "@/app/api/posts/[post_id]/unlike/route";
 import CommentFeed from "./CommentFeed";
+import CommentForm from "./CommentForm";
 
 function PostOptions({ post }: { post: IPostDocument }) {
   const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -128,9 +129,9 @@ function PostOptions({ post }: { post: IPostDocument }) {
       {isCommentOpen && (
         <div className="p-4">
           <SignedIn>
-            <CommentFeed post={post} />
+            <CommentForm postId={post._id as string} />
           </SignedIn>
-          {/* <CommentFeed post={post} /> */}
+          <CommentFeed post={post} />
         </div>
       )}
     </div>
