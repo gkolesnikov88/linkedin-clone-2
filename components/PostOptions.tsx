@@ -1,12 +1,13 @@
 "use client";
 import { IPostDocument } from "@/mongodb/models/post";
-import { useUser } from "@clerk/nextjs";
+import { SignedIn, useUser } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { MessageCircle, Repeat2, Send, ThumbsUpIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LikePostRequestBody } from "@/app/api/posts/[post_id]/like/route";
 import { UnlikePostRequestBody } from "@/app/api/posts/[post_id]/unlike/route";
+import CommentFeed from "./CommentFeed";
 
 function PostOptions({ post }: { post: IPostDocument }) {
   const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -50,7 +51,7 @@ function PostOptions({ post }: { post: IPostDocument }) {
       }
     );
 
-    if(!response.ok) {
+    if (!response.ok) {
       setLiked(originalLiked);
       setLikes(originalLikes);
 
@@ -58,14 +59,14 @@ function PostOptions({ post }: { post: IPostDocument }) {
     }
 
     const fetchLikesResponse = await fetch(`/api/posts/${post._id}/like`);
-    if(!fetchLikesResponse.ok) {
+    if (!fetchLikesResponse.ok) {
       setLiked(originalLiked);
       setLikes(originalLikes);
       throw new Error("Failed to fetch likes");
     }
 
     const newLikesData = await fetchLikesResponse.json();
-    
+
     setLikes(newLikesData);
   };
 
@@ -126,8 +127,10 @@ function PostOptions({ post }: { post: IPostDocument }) {
 
       {isCommentOpen && (
         <div className="p-4">
-          {/* {user?.id && <CommentForm postId={postId} />}
-          <CommentFeed post={post} /> */}
+          <SignedIn>
+            <CommentFeed post={post} />
+          </SignedIn>
+          {/* <CommentFeed post={post} /> */}
         </div>
       )}
     </div>
