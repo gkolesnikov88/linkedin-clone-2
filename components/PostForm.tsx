@@ -26,11 +26,11 @@ const PostForm = () => {
     setPreview(null);
 
     try {
-        await createPostAction(formDataCopy);
+      await createPostAction(formDataCopy);
     } catch (error) {
-        console.log("Error creating post:", error);
+      console.log("Error creating post:", error);
     }
-  }
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -41,11 +41,15 @@ const PostForm = () => {
 
   return (
     <div className="mb-2">
-      <form ref={ref} action={formData => {
-        // Handle form submission with server action
-        handlePostAction(formData);
-        // Toast notification based on the promise above
-      }} className="p-3 bg-white rounded-lg border">
+      <form
+        ref={ref}
+        action={formData => {
+          // Handle form submission with server action
+          handlePostAction(formData);
+          // Toast notification based on the promise above
+        }}
+        className="p-3 bg-white rounded-lg border"
+      >
         <div className="flex items-center space-x-2">
           <Avatar>
             <AvatarImage src={user?.imageUrl} />
@@ -86,13 +90,21 @@ const PostForm = () => {
         )}
 
         <div className="flex justify-end mt-2 space-x-2">
-          <Button type="button" onClick={() => fileInputRef.current?.click()}>
+          <Button
+            type="button"
+            variant={preview ? "secondary" : "outline"}
+            onClick={() => fileInputRef.current?.click()}
+          >
             <ImageIcon className="mr-2" size={16} color="currentColor" />
             {preview ? "Change" : "Add"} Image
           </Button>
 
           {preview && (
-            <Button variant="outline" type="button" onClick={() => setPreview(null)}>
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => setPreview(null)}
+            >
               <XIcon className="mr-2" size={16} color="currentColor" />
               Remove Image
             </Button>
@@ -100,7 +112,7 @@ const PostForm = () => {
         </div>
       </form>
 
-      <hr className="mt-2 border-gray-300"/>
+      <hr className="mt-2 border-gray-300" />
     </div>
   );
 };
