@@ -1,3 +1,15 @@
+DEMO: [https://linkedin-clone-yt-1322f.web.app/](https://linkdin-clone-2-gkolesnikov88-gkolesnikov88s-projects.vercel.app/)
+
+Base functionality: 
+  Authorization with the Clerk, 
+  Add a new post,
+  Add an image when creating a post,
+  Delete a post,
+  Add a post's comment,
+  Like or unlike a post...
+
+Example: ![image](https://github.com/user-attachments/assets/d797ea32-6c5e-4327-861f-b70fca817ea0)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
