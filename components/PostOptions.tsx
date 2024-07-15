@@ -9,6 +9,7 @@ import { LikePostRequestBody } from "@/app/api/posts/[post_id]/like/route";
 import { UnlikePostRequestBody } from "@/app/api/posts/[post_id]/unlike/route";
 import CommentFeed from "./CommentFeed";
 import CommentForm from "./CommentForm";
+import { toast } from "sonner";
 
 function PostOptions({ post }: { post: IPostDocument }) {
   const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -95,7 +96,15 @@ function PostOptions({ post }: { post: IPostDocument }) {
         <Button
           variant="ghost"
           className="postButton"
-          onClick={likeOrUnlikeAction}
+          onClick={() => {
+            const promise = likeOrUnlikeAction();
+
+            toast.promise(promise, {
+              loading: liked ? "Unliking post..." : "Liking post...",
+              success: liked ? "Post unliked!" : "Post liked!",
+              error: liked ? "Failed to unlike post" : "Failed to like post"
+            });
+          }}
         >
           <ThumbsUpIcon
             className={cn("mr-1", liked && "text-[#4881c2] fill-[#4881c2]")}
