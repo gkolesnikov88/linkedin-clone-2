@@ -106,7 +106,7 @@ PostSchema.statics.getAllPosts = async function () {
     return posts.map((post: IPostDocument) => {
       return {
         ...post,
-        _id: (post._id as ObjectId).toString(),
+        _id: (post._id as Key).toString(),
         comments: post.comments?.map((comment: IComment) => {
           return {
             ...comment,
